@@ -38,13 +38,13 @@ public class HospitalParser implements Parser<Hospital>{
             subdivision = "대학병원";
         } else if (str.contains("한방")) {
             subdivision = "한방병원";
-        }else if (str.contains("비뇨")) {
+        } else if (str.contains("비뇨")) {
             subdivision = "비뇨기과";
-        }else if (str.contains("안과")) {
+        } else if (str.contains("안과")) {
             subdivision = "안과";
-        }else if (str.contains("산부인과")) {
+        } else if (str.contains("산부인과")) {
             subdivision = "산부인과";
-        }else if (str.contains("가정")) {
+        } else if (str.contains("가정")) {
             subdivision = "가정의학과";
         } else {
             subdivision = "종합의원";
