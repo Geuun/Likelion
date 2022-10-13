@@ -22,7 +22,7 @@ public class Hospital {
         this.subdivision = subdivision;
     }
 
-    public void setDistrict(String district) {
+    public void setDistrict() {
         String[] splitted = this.address.split(" ");
         this.district = String.format("%s %s", splitted[0], splitted[1]);
     }
