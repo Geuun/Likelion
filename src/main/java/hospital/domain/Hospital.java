@@ -9,6 +9,9 @@ public class Hospital {
     private String name; // [10]
     private String subdivision; // [10] 수정
 
+    public Hospital() {
+    }
+
     public Hospital(String id, String address, String category, int emergencyRoom, String name, String subdivision) {
         this.id = id;
         this.address = address;
@@ -18,6 +21,28 @@ public class Hospital {
         this.emergencyRoom = emergencyRoom;
         this.name = name;
         this.subdivision = subdivision;
+    }
+
+    public String getSqlInsertQuery() {
+        String sql = String.format("INSERT IGNORE INTO `hospital`.`seoul_hospital`\n" +
+                "(`id`,`address`,`district`,`category`,`emergency_room`,`name`,`subdivision`)\n" +
+                "VALUES\n");
+//                "(\"%s\",\n" +
+//                "\"%s\",\n" +
+//                "\"%s\",\n" +
+//                "\"%s\",\n" +
+//                "%d,\n" +
+//                "\"%s\",\n" +
+//                "\"%s\");\n", this.id, this.address, this.district, this.category, this.emergencyRoom, this.name, this.subdivision);
+        return sql;
+    }
+
+    public String getTupleString() {
+        String sql = String.format(
+                "(\"%s\",\"%s\"," +"\"%s\"," +
+                        "\"%s\"," +"%d," +"\"%s\"," +"\"%s\");",
+                this.id, this.address, this.district, this.category, this.emergencyRoom, this.name, this.subdivision);
+        return sql;
     }
 
     public String getId() {
