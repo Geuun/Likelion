@@ -46,6 +46,8 @@ public class HospitalParser implements Parser<Hospital>{
             subdivision = "산부인과";
         } else if (str.contains("가정")) {
             subdivision = "가정의학과";
+        } else if (str.contains("이비인후")) {
+            subdivision = "이비인후과";
         } else {
             subdivision = "종합의원";
         }
