@@ -27,6 +27,7 @@ public class Main {
         for (Hospital hospital1 : hospitals) {
             lines.add(hospital1.getTupleString());
         }
+        lines.add(hospital.insertSemi());
 
         String sqlFilename = "./src/main/java/hospital/sql/hospital_insert.sql";
         hospitalFileController.createANewFile(sqlFilename);

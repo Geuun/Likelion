@@ -30,7 +30,7 @@ public class CodeUpC1443 {
             arr[i] = sc.nextInt();
         }
 
-        CodeUpC1443 codeUpC1443 = new CodeUpC1443();
+        CodeUpC1443 main = new CodeUpC1443();
 //        arr = new int[]{5, 8, 6, 2, 4};
         int[] result = main.sort(arr);
 
