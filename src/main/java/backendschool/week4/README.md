@@ -14,5 +14,9 @@
 
 ### 22.10.13
 
-- BubbleSort..?
-- 파일 불러와서 DB에 넣기
+- BubbleSort - K.ver(???)
+- Java로 데이터 전처리 및 SQL 파일 작성 후 DB(Mysql)에 넣기 
+
+### 22.10.14
+
+- InsertionSort(선택정렬)
