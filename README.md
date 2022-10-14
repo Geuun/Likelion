@@ -1,4 +1,4 @@
-# Like_Lion BackendSchool
+# 🦁 Like_Lion BackendSchool
 
 ![Likelion](https://user-images.githubusercontent.com/89567475/195085638-dc76cc73-495c-44ca-9348-554bfea27057.png)
 
