@@ -44,8 +44,13 @@ public class Hospital {
     public String getTupleString() {
         String sql = String.format(
                 "(\"%s\",\"%s\"," +"\"%s\"," +
-                        "\"%s\"," +"%d," +"\"%s\"," +"\"%s\");",
+                        "\"%s\"," +"%d," +"\"%s\"," +"\"%s\"),\n",
                 this.id, this.address, this.district, this.category, this.emergencyRoom, this.name, this.subdivision);
+        return sql;
+    }
+
+    public String insertSemi() {
+        String sql = ";";
         return sql;
     }
 
