@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class Square {
 
-    String letter = "*";
+    private String letter = "*";
 
     public void printSquare(int num) {
 
