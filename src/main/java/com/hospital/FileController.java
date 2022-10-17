@@ -1,4 +1,4 @@
-package hospital;
+package com.hospital;
 
 import hospital.parser.Parser;
 

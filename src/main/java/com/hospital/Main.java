@@ -1,5 +1,6 @@
-package hospital;
+package com.hospital;
 
+import hospital.FileController;
 import hospital.domain.Hospital;
 import hospital.parser.HospitalParser;
 
@@ -29,7 +30,7 @@ public class Main {
         }
         lines.add(hospital.insertSemi());
 
-        String sqlFilename = "./src/main/java/hospital/sql/hospital_insert.sql";
+        String sqlFilename = "./src/main/java/com/hospital/sql/hospital_insert.sql";
         hospitalFileController.createANewFile(sqlFilename);
         hospitalFileController.writeLines(lines, sqlFilename);
     }

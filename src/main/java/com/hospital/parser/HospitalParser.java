@@ -1,8 +1,9 @@
-package hospital.parser;
+package com.hospital.parser;
 
 import hospital.domain.Hospital;
+import hospital.parser.Parser;
 
-public class HospitalParser implements Parser<Hospital>{
+public class HospitalParser implements Parser<Hospital> {
     @Override
     public Hospital parse(String str) {
         str = str.replaceAll("\"", "");

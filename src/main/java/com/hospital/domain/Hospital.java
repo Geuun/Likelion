@@ -1,4 +1,4 @@
-package hospital.domain;
+package com.hospital.domain;
 
 public class Hospital {
     private String id; // [0]
