@@ -1,11 +1,11 @@
 package com.hospital;
 
-import hospital.parser.Parser;
+import com.hospital.parser.HospitalParser;
+import com.hospital.parser.Parser;
 
 import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
-import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
@@ -31,7 +31,7 @@ public class FileController<T> {
         BufferedReader br; // = new BufferedReader(new FileReader(filename));
         br = Files.newBufferedReader(Paths.get(filename), StandardCharsets.UTF_8);
         String str;
-        if(isRemoveColumnName) {
+        if (isRemoveColumnName) {
             br.readLine();
         }
         while ((str = br.readLine()) != null) {
