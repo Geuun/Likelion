@@ -1,4 +1,4 @@
-package main.java.codeup.c1020_1040;
+package algorithm.codeup.c1020_1040;
 
 import java.util.Scanner;
 
