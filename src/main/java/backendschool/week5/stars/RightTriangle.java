@@ -12,9 +12,9 @@ public class RightTriangle {
          * ****
          */
         Scanner sc = new Scanner(System.in);
-        int num = sc.nextInt() + 1;
+        int num = sc.nextInt();
 
-        for (int i = 0; i < num; i++) {
+        for (int i = 0; i <= num; i++) {
             for(int j = 0; j < i; j++) {
                 System.out.print("*");
             }
