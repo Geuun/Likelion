@@ -1,8 +1,8 @@
 package com.hospital;
 
-import hospital.FileController;
-import hospital.domain.Hospital;
-import hospital.parser.HospitalParser;
+import com.hospital.FileController;
+import com.hospital.domain.Hospital;
+import com.hospital.parser.HospitalParser;
 
 import java.io.IOException;
 import java.util.ArrayList;
