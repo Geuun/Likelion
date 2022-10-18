@@ -6,17 +6,13 @@ import java.sql.*;
 import java.util.Map;
 
 public class UserDao {
-    private Connection makeConnection() throws SQLException {
-        Map<String, String> env = System.getenv();
-        // DB접속
-        Connection connection = DriverManager.getConnection(env.get("DB_HOST"),
-                env.get("DB_USER"), env.get("DB_PASSWORD"));
-        return connection;
-    }
+    AwsConnectionMaker awsConnectionMaker = new AwsConnectionMaker();
+
+    // insert
     public void add(User user) {
 
         try {
-            Connection connection = makeConnection();
+            Connection connection = awsConnectionMaker.makeConnection();
 
             // Query 문 작성
             PreparedStatement pstmt = connection.prepareStatement("INSERT INTO `likelion-db`.users(id, name, password) VALUES (?, ?, ?)");
@@ -35,9 +31,10 @@ public class UserDao {
         }
     }
 
+    //select
     public User findById(String id) {
         try {
-            Connection connection = makeConnection();
+            Connection connection = awsConnectionMaker.makeConnection();
 
             // Query문 작성
             PreparedStatement pstmt = connection.prepareStatement("SELECT * FROM `likelion-db`.users WHERE id = ?");
