@@ -53,14 +53,4 @@ public abstract class UserDaoAbstract {
             throw new RuntimeException(e);
         }
     }
-
-
-    public static void main(String[] args) throws SQLException, ClassNotFoundException {
-//        UserDaoAbstract userDao = new UserDaoAbstract();
-//
-//        userDao.add(new User("7", "geun", "asdf1234"));
-//
-//        User user = userDao.findById("7");
-//        System.out.println(user.getName());
-    }
 }
