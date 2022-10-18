@@ -1,4 +1,4 @@
-package backendschool.week5.stars;
+package backendschool.week5.day1017.stars;
 
 import java.util.Scanner;
 

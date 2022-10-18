@@ -1,6 +1,6 @@
-package com.dbexercise.dao;
+package com.jdbcexercise.dao;
 
-import com.dbexercise.domain.User;
+import com.jdbcexercise.domain.User;
 
 import java.sql.*;
 import java.util.Map;
