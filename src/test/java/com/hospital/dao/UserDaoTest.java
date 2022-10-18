@@ -13,9 +13,12 @@ class UserDaoTest {
     @DisplayName("DAO가 잘 되는지 테스트")
     void addAndSelect() {
         UserDao userDao = new UserDao();
-        User user = new User("7", "geun", "asdf1234");
 
-        User selectedUser = userDao.findById("7");
+        String id = "9";
+
+        User user = new User(id, "geun", "asdf1234");
+
+        User selectedUser = userDao.findById(id);
         Assertions.assertEquals("geun", selectedUser.getName());
     }
 }
