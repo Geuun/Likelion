@@ -37,7 +37,7 @@ public class UserDao {
             connection = DriverManager.getConnection(env.get("DB_HOST"),
                     env.get("DB_USER"), env.get("DB_PASSWORD"));
             // Query문 작성
-            PreparedStatement pstmt = c.prepareStatement("SELECT * FROM users WHERE id = ?");
+            PreparedStatement pstmt = connection.prepareStatement("SELECT * FROM users WHERE id = ?");
             pstmt.setString(1, id);
 
             // Query문 실행
