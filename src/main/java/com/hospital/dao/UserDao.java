@@ -6,7 +6,7 @@ import java.sql.*;
 import java.util.Map;
 
 public class UserDao {
-    public void add() {
+    public void add(User user) {
         Map<String, String> env = System.getenv();
         try {
             Connection connection = DriverManager.getConnection(env.get("DB_HOST"),
@@ -14,9 +14,9 @@ public class UserDao {
 
             // Query 문 작성
             PreparedStatement pstmt = connection.prepareStatement("INSERT INTO users(id, name, password) VALUES (?, ?, ?)");
-            pstmt.setString(1, "6");
-            pstmt.setString(2, "geun");
-            pstmt.setString(3, "1q2w3e4r");
+            pstmt.setString(1, user.getId());
+            pstmt.setString(2, user.getName());
+            pstmt.setString(3, user.getPassword());
 
             // Query 문 실행
             pstmt.executeUpdate();
@@ -59,7 +59,9 @@ public class UserDao {
 
     public static void main(String[] args) throws SQLException, ClassNotFoundException {
         UserDao userDao = new UserDao();
-//        userDao.add();
+
+        userDao.add(new User("7", "geun", "asdf1234"))
+
         User user = userDao.findById("6");
         System.out.println(user.getName());
     }
