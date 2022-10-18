@@ -12,12 +12,16 @@ class UserDaoTest {
     @Test
     @DisplayName("DAO가 잘 되는지 테스트")
     void addAndSelect() {
-        UserDao userDao = new UserDao();
+        AWSUserDaoImpl userDao = new AWSUserDaoImpl()
 
-        String id = "9";
+        //id가 중복이되어서 vairable로 뺌
+        String id = "2";
 
         User user = new User(id, "geun", "asdf1234");
 
+        //insert
+        userDao.add(user);
+        // select
         User selectedUser = userDao.findById(id);
         Assertions.assertEquals("geun", selectedUser.getName());
     }
