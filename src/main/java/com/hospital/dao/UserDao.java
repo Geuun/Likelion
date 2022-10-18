@@ -6,13 +6,20 @@ import java.sql.*;
 import java.util.Map;
 
 public class UserDao {
-    AwsConnectionMaker awsConnectionMaker = new AwsConnectionMaker();
+    private ConnectionMaker connectionMaker;
+
+    public UserDao() {
+        this.connectionMaker = new AWSConnectionMaker();
+    }
+
+    public UserDao(ConnectionMaker connectionMaker) {
+        this.connectionMaker = connectionMaker;
+    }
 
     // insert
     public void add(User user) {
-
         try {
-            Connection connection = awsConnectionMaker.makeConnection();
+            Connection connection = connectionMaker.makeConnection();
 
             // Query 문 작성
             PreparedStatement pstmt = connection.prepareStatement("INSERT INTO `likelion-db`.users(id, name, password) VALUES (?, ?, ?)");
@@ -34,7 +41,7 @@ public class UserDao {
     //select
     public User findById(String id) {
         try {
-            Connection connection = awsConnectionMaker.makeConnection();
+            Connection connection = connectionMaker.makeConnection();
 
             // Query문 작성
             PreparedStatement pstmt = connection.prepareStatement("SELECT * FROM `likelion-db`.users WHERE id = ?");
@@ -44,7 +51,7 @@ public class UserDao {
             ResultSet rs = pstmt.executeQuery();
             rs.next();
             User user = new User(rs.getString("id"), rs.getString("name"),
-                    rs.getString("name"));
+                    rs.getString("password"));
 
             rs.close();
             pstmt.close();

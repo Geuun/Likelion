@@ -15,7 +15,7 @@ class UserDaoTest {
         UserDao userDao = new UserDao();
 
         //id가 중복이되어서 vairable로 뺌
-        String id = "4";
+        String id = "6";
 
         //insert
         userDao.add(new User(id, "geun", "asdf1234"));
