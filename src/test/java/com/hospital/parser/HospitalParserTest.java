@@ -1,4 +1,4 @@
-package hospital.parser;
+package com.hospital.parser;
 
 import com.hospital.domain.Hospital;
 import com.hospital.parser.HospitalParser;
