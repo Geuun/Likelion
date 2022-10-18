@@ -13,7 +13,7 @@ public class UserDao {
                     env.get("DB_USER"), env.get("DB_PASSWORD"));
 
             // Query 문 작성
-            PreparedStatement pstmt = connection.prepareStatement("INSERT INTO users(id, name, password) VALUES (?, ?, ?)");
+            PreparedStatement pstmt = connection.prepareStatement("INSERT INTO `likelion-db`.users(id, name, password) VALUES (?, ?, ?)");
             pstmt.setString(1, user.getId());
             pstmt.setString(2, user.getName());
             pstmt.setString(3, user.getPassword());
@@ -37,7 +37,7 @@ public class UserDao {
             connection = DriverManager.getConnection(env.get("DB_HOST"),
                     env.get("DB_USER"), env.get("DB_PASSWORD"));
             // Query문 작성
-            PreparedStatement pstmt = connection.prepareStatement("SELECT * FROM users WHERE id = ?");
+            PreparedStatement pstmt = connection.prepareStatement("SELECT * FROM `likelion-db`.users WHERE id = ?");
             pstmt.setString(1, id);
 
             // Query문 실행
@@ -60,9 +60,9 @@ public class UserDao {
     public static void main(String[] args) throws SQLException, ClassNotFoundException {
         UserDao userDao = new UserDao();
 
-        userDao.add(new User("7", "geun", "asdf1234"))
+        userDao.add(new User("7", "geun", "asdf1234"));
 
-        User user = userDao.findById("6");
+        User user = userDao.findById("7");
         System.out.println(user.getName());
     }
 }

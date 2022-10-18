@@ -1,6 +1,7 @@
 package hospital.parser;
 
-import hospital.domain.Hospital;
+import com.hospital.domain.Hospital;
+import com.hospital.parser.HospitalParser;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
