@@ -25,19 +25,19 @@ public class SquareStar {
     }
 
     public void printRectangle2(int n) {
-        // TODO: 고쳐야 됨!!!
-        for (int i = 1; i <= n; i++) {
-            if (i == 1 || i == n) {
-                for (int j = 1; j <= n ; j++) {
+        for (int i = 0; i < n; i++) {
+            if (i == 0 || i == n - 1) {
+                for (int j = 0; j < n; j++) {
                     System.out.print("*");
                 }
             } else {
                 System.out.print("*");
                 for (int j = 0; j < n - 2; j++) {
-                    System.out.println(" ");
+                    System.out.print(" ");
                 }
                 System.out.print("*");
             }
+            System.out.println();
         }
     }
 
