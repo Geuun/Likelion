@@ -15,11 +15,28 @@ public class SquareStar {
         }
     }
 
+    public void printRectangle(int x, int y) {
+        for (int i = 0; i < x; i++) {
+            for (int j = 0; j < y; j++) {
+                System.out.print("*");
+            }
+            System.out.println();
+        }
+    }
+
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         SquareStar squareStar = new SquareStar();
-        int num = sc.nextInt();
 
+        System.out.print("정사각형 x: ");
+        int num = sc.nextInt();
         squareStar.printSquareMatrix(num);
+
+        System.out.print("직사각형 x: ");
+        int x = sc.nextInt();
+        System.out.print("직사각형 y: ");
+        int y = sc.nextInt();
+        squareStar.printRectangle(x, y);
+
     }
 }
