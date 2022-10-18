@@ -41,6 +41,18 @@ public class SquareStar {
         }
     }
 
+    public void printParallelogram(int n) {
+        for (int i = 0; i < n; i++) {
+            for (int j = n - 1; j > i; j--) {
+                System.out.print(" ");
+            }
+            for (int j = 0; j < n; j++) {
+                System.out.print("*");
+            }
+            System.out.println();
+        }
+    }
+
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         SquareStar squareStar = new SquareStar();
@@ -55,8 +67,8 @@ public class SquareStar {
 //        int y = sc.nextInt();
 //        squareStar.printRectangle(x, y);
 
-        System.out.print("N : >>");
+        System.out.print("N : ");
         int n = sc.nextInt();
-        squareStar.printRectangle2(n);
+        squareStar.printParallelogram(n);
     }
 }
