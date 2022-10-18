@@ -48,7 +48,7 @@ public class UserDao {
 
             rs.close();
             pstmt.close();
-            c.close();
+            connection.close();
 
             return user;
         } catch (SQLException e) {
