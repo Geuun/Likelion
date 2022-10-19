@@ -12,10 +12,10 @@ class UserDaoTest {
     @Test
     @DisplayName("DAO가 잘 되는지 테스트")
     void addAndSelect() {
-        UserDao userDao = new UserDao();
+        UserDao userDao = new UserDaoFactory().awsUserDao();
 
         //id가 중복이되어서 vairable로 뺌
-        String id = "6";
+        String id = "7";
 
         //insert
         userDao.add(new User(id, "geun", "asdf1234"));
