@@ -3,7 +3,6 @@ package com.hospital.dao;
 import com.hospital.domain.User;
 
 import java.sql.*;
-import java.util.Map;
 
 public class UserDao {
     private ConnectionMaker connectionMaker;
@@ -64,18 +63,20 @@ public class UserDao {
         connection.close();
     }
 
-    public void getCount() throws SQLException, ClassNotFoundException {
+    public int getCount() throws SQLException, ClassNotFoundException {
         Connection connection = connectionMaker.makeConnection();
 
         PreparedStatement pstmt = connection.prepareStatement("SELECT  COUNT(*) from `likelion-db`.users");
 
         ResultSet rs = pstmt.executeQuery();
         rs.next();
+        int count = rs.getInt(1);
 
         rs.close();
         pstmt.close();
         connection.close();
-        
+
+        return count;
     }
 
     public static void main(String[] args) throws SQLException, ClassNotFoundException {
