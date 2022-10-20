@@ -26,7 +26,7 @@ class UserDaoTest {
         UserDao userDao = context.getBean("awsUserDao", UserDao.class);
 
         //id가 중복이되어서 vairable로 뺌
-        String id = "12";
+        String id = "13";
 
         //insert
         userDao.add(new User(id, "geun", "asdf1234"));
