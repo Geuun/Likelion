@@ -46,7 +46,7 @@ public class UserDao {
         // Query문 실행
         ResultSet rs = pstmt.executeQuery();
         User user = null;
-        if(rs.next()) {
+        if (rs.next()) {
             user = new User(rs.getString("id"),
                     rs.getString("name"),
                     rs.getString("password"));
@@ -56,7 +56,7 @@ public class UserDao {
         pstmt.close();
         connection.close();
 
-        if(user == null) {
+        if (user == null) {
             throw new EmptyResultDataAccessException(1);
         }
 
@@ -64,27 +64,71 @@ public class UserDao {
     }
 
     public void deleteAll() throws SQLException, ClassNotFoundException {
-        Connection connection = connectionMaker.makeConnection();
-        PreparedStatement pstmt = connection.prepareStatement("DELETE FROM `likelion-db`.users");
+        Connection connection = null;
+        PreparedStatement pstmt = null;
+        try {
+            connection = connectionMaker.makeConnection();
+            pstmt = connection.prepareStatement("DELETE FROM `likelion-db`.users");
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        } finally { // error 가 나도 실행되는 블럭
+            if (pstmt != null) {
+                try {
+                    pstmt.close();
+                } catch (SQLException e) {
+                }
+            }
+            if (connection != null) {
+                try {
+                    connection.close();
+                } catch (SQLException e) {
+                }
+            }
+        }
         pstmt.executeUpdate();
         pstmt.close();
         connection.close();
     }
 
     public int getCount() throws SQLException, ClassNotFoundException {
-        Connection connection = connectionMaker.makeConnection();
-
-        PreparedStatement pstmt = connection.prepareStatement("SELECT  COUNT(*) from `likelion-db`.users");
-
-        ResultSet rs = pstmt.executeQuery();
-        rs.next();
-        int count = rs.getInt(1);
-
-        rs.close();
-        pstmt.close();
-        connection.close();
-
-        return count;
+        Connection connection = null;
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+        try {
+            connection = connectionMaker.makeConnection();
+            pstmt = connection.prepareStatement("SELECT  COUNT(*) from `likelion-db`.users");
+            rs = pstmt.executeQuery();
+            rs.next();
+            return rs.getInt(1);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        } finally {
+            if (rs != null) {
+                try {
+                    rs.close();
+                } catch (SQLException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+            if (pstmt != null) {
+                try {
+                    pstmt.close();
+                } catch (SQLException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+            if (connection != null) {
+                try {
+                    connection.close();
+                } catch (SQLException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+        }
     }
 
     public static void main(String[] args) throws SQLException, ClassNotFoundException {
