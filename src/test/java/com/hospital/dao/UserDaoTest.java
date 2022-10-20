@@ -22,18 +22,47 @@ class UserDaoTest {
 
     @Test
     @DisplayName("DAO가 잘 되는지 테스트")
-    void addAndSelect() throws SQLException, ClassNotFoundException {
+    void addAndGet() throws SQLException, ClassNotFoundException {
+        User user1 = new User("1", "geun", "1123");
+
         UserDao userDao = context.getBean("awsUserDao", UserDao.class);
 
-        //id가 중복이되어서 vairable로 뺌
-        String id = "13";
+        userDao.deleteAll();
+        assertEquals(0, userDao.getCount());
 
-        //insert
-        userDao.add(new User(id, "geun", "asdf1234"));
+        // insert
+        userDao.add(user1);
+        assertEquals(1,userDao.getCount());
 
         // select
-        User user = userDao.findById(id);
-        assertEquals("geun", user.getName());
-        assertEquals("asdf1234", user.getPassword());
+        User user = userDao.findById(user1.getId());
+        assertEquals(user1.getName(), user.getName());
+        assertEquals(user1.getPassword(), user.getPassword());
+    }
+
+    @Test
+    void count() throws SQLException, ClassNotFoundException {
+
+        User user1 = new User("1", "geun", "1123");
+        User user2 = new User("2", "gana", "2223");
+        User user3 = new User("3", "dara", "3323");
+
+        UserDao userDao = context.getBean("awsUserDao", UserDao.class);
+
+        userDao.deleteAll();
+        assertEquals(0, userDao.getCount());
+
+        userDao.add(user1);
+        assertEquals(1, userDao.getCount());
+        userDao.add(user2);
+        assertEquals(2, userDao.getCount());
+        userDao.add(user3);
+        assertEquals(3, userDao.getCount());
+    }
+
+    @Test
+    void findById() throws SQLException, ClassNotFoundException {
+        UserDao userDao = context.getBean("awsUserDao", UserDao.class);
+        userDao.findById("1");
     }
 }
