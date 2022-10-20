@@ -56,11 +56,19 @@ public class UserDao {
         return user;
     }
 
+    public void deleteAll() throws SQLException, ClassNotFoundException {
+        Connection connection = connectionMaker.makeConnection();
+        PreparedStatement pstmt = connection.prepareStatement("DELETE FROM `likelion-db`.users");
+        pstmt.executeUpdate();
+        pstmt.close();
+        connection.close();
+    }
+
 
     public static void main(String[] args) throws SQLException, ClassNotFoundException {
         UserDao userDao = new UserDao();
 
-        String id = "11";
+        String id = "12";
         userDao.add(new User(id, "geun", "asdf1234"));
 
         User user = userDao.findById(id);

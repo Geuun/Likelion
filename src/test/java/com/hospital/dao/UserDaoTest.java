@@ -33,7 +33,7 @@ class UserDaoTest {
 
         // select
         User user = userDao.findById(id);
-        Assertions.assertEquals("geun", user.getName());
-        Assertions.assertEquals("asdf1234", user.getPassword());
+        assertEquals("geun", user.getName());
+        assertEquals("asdf1234", user.getPassword());
     }
 }
