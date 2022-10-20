@@ -13,11 +13,16 @@ class stack02Test {
      * db에서 데이터를 지우는 코드
      * db에 데이터를 넣는 코드 등을 넣는다.
      */
+
+    Stack02 st = new Stack02();
+
     @BeforeEach
     void setUp() {
         // ex) db에서 데이터 지우는 코드
         // ex) db에 데이터를 넣는 코드
         System.out.println("before each");
+        st.push(10);
+        st.push(20);
     }
 
     @Test
@@ -25,10 +30,6 @@ class stack02Test {
     void push() {
         //.push()
         //.getArr()
-
-        Stack02 st = new Stack02();
-        st.push(10);
-        st.push(20);
 
         Integer[] arr = st.getArr();
         assertEquals(20, arr[1]);
@@ -39,10 +40,7 @@ class stack02Test {
     @DisplayName("pushAndPop")
     void pushAndPop() {
 
-        Stack02 st = new Stack02();
-        st.push(10);
-        st.push(20);
-
+        Integer[] arr = st.getArr();
         assertEquals(20, st.pop());
         assertEquals(10, st.pop());
     }
