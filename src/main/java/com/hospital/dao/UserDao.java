@@ -64,6 +64,19 @@ public class UserDao {
         connection.close();
     }
 
+    public void getCount() throws SQLException, ClassNotFoundException {
+        Connection connection = connectionMaker.makeConnection();
+
+        PreparedStatement pstmt = connection.prepareStatement("SELECT  COUNT(*) from `likelion-db`.users");
+
+        ResultSet rs = pstmt.executeQuery();
+        rs.next();
+
+        rs.close();
+        pstmt.close();
+        connection.close();
+        
+    }
 
     public static void main(String[] args) throws SQLException, ClassNotFoundException {
         UserDao userDao = new UserDao();
