@@ -2,15 +2,18 @@ package com.hospital.dao;
 
 import com.hospital.domain.User;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.sql.SQLException;
+import java.util.EmptyStackException;
 
 import static org.junit.jupiter.api.Assertions.*;
 @ExtendWith(SpringExtension.class)
@@ -20,12 +23,16 @@ class UserDaoTest {
     @Autowired
     ApplicationContext context;
 
+    UserDao userDao;
+    @BeforeEach
+    void setUp() {
+        this.userDao = context.getBean("awsUserDao", UserDao.class);
+    }
+
     @Test
     @DisplayName("DAO가 잘 되는지 테스트")
     void addAndGet() throws SQLException, ClassNotFoundException {
         User user1 = new User("1", "geun", "1123");
-
-        UserDao userDao = context.getBean("awsUserDao", UserDao.class);
 
         userDao.deleteAll();
         assertEquals(0, userDao.getCount());
@@ -47,8 +54,6 @@ class UserDaoTest {
         User user2 = new User("2", "gana", "2223");
         User user3 = new User("3", "dara", "3323");
 
-        UserDao userDao = context.getBean("awsUserDao", UserDao.class);
-
         userDao.deleteAll();
         assertEquals(0, userDao.getCount());
 
@@ -62,7 +67,8 @@ class UserDaoTest {
 
     @Test
     void findById() throws SQLException, ClassNotFoundException {
-        UserDao userDao = context.getBean("awsUserDao", UserDao.class);
-        userDao.findById("1");
+        assertThrows(EmptyResultDataAccessException.class, () -> {
+            userDao.findById("30");
+        });
     }
 }
