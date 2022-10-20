@@ -8,10 +8,6 @@ import java.sql.*;
 public class UserDao {
     private ConnectionMaker connectionMaker;
 
-    public UserDao() {
-        this.connectionMaker = new AWSConnectionMaker();
-    }
-
     public UserDao(ConnectionMaker connectionMaker) {
         this.connectionMaker = connectionMaker;
     }
@@ -69,6 +65,7 @@ public class UserDao {
         try {
             connection = connectionMaker.makeConnection();
             pstmt = connection.prepareStatement("DELETE FROM `likelion-db`.users");
+            pstmt.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         } catch (ClassNotFoundException e) {
@@ -87,9 +84,6 @@ public class UserDao {
                 }
             }
         }
-        pstmt.executeUpdate();
-        pstmt.close();
-        connection.close();
     }
 
     public int getCount() throws SQLException, ClassNotFoundException {
@@ -132,7 +126,9 @@ public class UserDao {
     }
 
     public static void main(String[] args) throws SQLException, ClassNotFoundException {
-        UserDao userDao = new UserDao();
+
+        AWSConnectionMaker awsConnectionMaker = new AWSConnectionMaker();
+        UserDao userDao = new UserDao(awsConnectionMaker);
 
         String id = "12";
         userDao.add(new User(id, "geun", "asdf1234"));
