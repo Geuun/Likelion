@@ -4,6 +4,9 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.EmptyStackException;
+import java.util.Stack;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class stack02Test {
@@ -14,15 +17,13 @@ class stack02Test {
      * db에 데이터를 넣는 코드 등을 넣는다.
      */
 
-    Stack02 st = new Stack02();
+
 
     @BeforeEach
     void setUp() {
         // ex) db에서 데이터 지우는 코드
         // ex) db에 데이터를 넣는 코드
         System.out.println("before each");
-        st.push(10);
-        st.push(20);
     }
 
     @Test
@@ -30,6 +31,10 @@ class stack02Test {
     void push() {
         //.push()
         //.getArr()
+
+        Stack02 st = new Stack02();
+        st.push(10);
+        st.push(20);
 
         Integer[] arr = st.getArr();
         assertEquals(20, arr[1]);
@@ -40,8 +45,36 @@ class stack02Test {
     @DisplayName("pushAndPop")
     void pushAndPop() {
 
-        Integer[] arr = st.getArr();
+        Stack02 st = new Stack02();
+        st.push(10);
+        st.push(20);
+
         assertEquals(20, st.pop());
         assertEquals(10, st.pop());
+
+        assertThrows(RuntimeException.class, () -> {
+            st.pop();
+        });
+    }
+
+    @Test
+    @DisplayName("isEmpty Test")
+    void isEmpty() {
+
+        Stack02 st = new Stack02();
+        assertTrue(st.isEmpty());
+        st.push(10);
+        assertFalse(st.isEmpty());
+        st.pop();
+        assertTrue(st.isEmpty());
+    }
+
+    @Test
+    void realStack() {
+        Stack<Integer> st = new Stack<>();
+        assertThrows(EmptyStackException.class, () -> {
+            st.pop();
+        });
+        st.pop();
     }
 }

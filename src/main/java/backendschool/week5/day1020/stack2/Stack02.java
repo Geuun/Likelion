@@ -1,5 +1,7 @@
 package backendschool.week5.day1020.stack2;
 
+import java.util.EmptyStackException;
+
 public class Stack02 {
     private Integer[] arr;
     private int top;
@@ -27,6 +29,14 @@ public class Stack02 {
 //        int value = this.arr[this.top-1];
 //        this.top--;
 //        return value;
+        if (this.isEmpty()) {
+            throw new RuntimeException("스택이 비어있습니다.");
+        }
         return this.arr[--this.top]; // 전위연산자 사용
+    }
+
+    public boolean isEmpty() {
+        boolean isEmpty = (this.top == 0);
+        return isEmpty;
     }
 }
