@@ -7,8 +7,7 @@ import java.util.Map;
 
 public class AWSConnectionMaker implements ConnectionMaker{
     @Override
-    public Connection makeConnection() throws SQLException, ClassNotFoundException {
-        Class.forName("com.mysql.cj.jdbc.Driver");
+    public Connection makeConnection() throws SQLException {
         Map<String, String> env = System.getenv();
         // DB접속
         Connection connection = DriverManager.getConnection(env.get("DB_HOST"),
