@@ -8,9 +8,8 @@ import java.util.Map;
 public class LocalConnectionMaker implements ConnectionMaker {
 
     @Override
-    public Connection makeConnection() throws SQLException, ClassNotFoundException {
+    public Connection makeConnection() throws SQLException {
         // DB접속
-        Class.forName("com.mysql.cj.jdbc.Driver");
         Connection connection = DriverManager.getConnection(
                 "jdbc:mysql://localhost:3306/likelion-db",
                 "root",
