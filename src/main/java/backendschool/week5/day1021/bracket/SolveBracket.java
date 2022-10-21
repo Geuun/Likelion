@@ -21,19 +21,25 @@ public class SolveBracket {
     }
 
     public boolean solution(String s) {
-    // Stack 사용
+        // Stack 사용
+        boolean answer;
         Stack<Character> stack = new Stack<>();
-        for (int i = 0; i < s.length(); i++) {
-            if ('(' == s.charAt(i)) {
-                stack.push(s.charAt(i));
-            } else if (')' == s.charAt(i)) {
-                if(stack.empty()) {
-                    return false;
+        try {
+            for (int i = 0; i < s.length(); i++) {
+                if ('(' == s.charAt(i)) {
+                    stack.push(s.charAt(i));
+                } else if (')' == s.charAt(i)) {
+                    if (stack.empty()) {
+                        return false;
+                    }
+                    stack.pop();
                 }
-                stack.pop();
             }
+            answer = stack.empty();
+        } catch (Exception e) {
+            answer = false;
+            // stack 이 비어있을 때 EmptyStackException
         }
-
-        return stack.empty();
+        return answer;
     }
 }
