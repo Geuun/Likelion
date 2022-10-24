@@ -3,10 +3,17 @@ package com.hospital.dao;
 import com.hospital.domain.User;
 import org.springframework.dao.EmptyResultDataAccessException;
 
+import javax.sql.DataSource;
 import java.sql.*;
 import java.util.EmptyStackException;
 
 public class UserDao {
+
+    private DataSource dataSource; // DataSource 를 의존하도록 변경
+
+    public UserDao(DataSource dataSource) {
+        this.dataSource =dataSource;
+    }
     private ConnectionMaker connectionMaker;
 
     public UserDao(ConnectionMaker connectionMaker) {
@@ -17,7 +24,7 @@ public class UserDao {
         Connection connection = null;
         PreparedStatement pstmt = null;
         try {
-            connection = connectionMaker.makeConnection();
+            connection = dataSource.getConnection(); // DataSource를 사용하도록 변경
             pstmt = stmt.makePreparedStatement(connection);
             pstmt.executeUpdate();
         } catch (SQLException e) {
