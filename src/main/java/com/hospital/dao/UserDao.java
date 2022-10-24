@@ -13,6 +13,33 @@ public class UserDao {
         this.connectionMaker = connectionMaker;
     }
 
+    public void jdbcContextWithStatementStrategy(StatementStrategy stmt) throws SQLException {
+        Connection connection = null;
+        PreparedStatement pstmt = null;
+        try {
+            connection = connectionMaker.makeConnection();
+            pstmt = stmt.makePreparedStatement(connection);
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            throw e;
+        } finally {
+            if (pstmt != null) {
+                try {
+                    pstmt.close();
+                } catch (SQLException e) {
+
+                }
+            }
+            if (connection != null) {
+                try {
+                    connection.close();
+                } catch (SQLException e) {
+
+                }
+            }
+        }
+    }
+
     // insert
     public void add(User user) throws SQLException {
 
@@ -114,7 +141,7 @@ public class UserDao {
         PreparedStatement pstmt = null;
         try {
             connection = connectionMaker.makeConnection();
-            pstmt = connection.prepareStatement("DELETE FROM `likelion-db`.users");
+            pstmt = new DeleteAllStrategy().makePreparedStatement(connection);
             pstmt.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException(e);
