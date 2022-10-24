@@ -12,8 +12,9 @@ public class UserDao {
     private DataSource dataSource; // DataSource 를 의존하도록 변경
 
     public UserDao(DataSource dataSource) {
-        this.dataSource =dataSource;
+        this.dataSource = dataSource;
     }
+
     private ConnectionMaker connectionMaker;
 
     public UserDao(ConnectionMaker connectionMaker) {
@@ -55,7 +56,7 @@ public class UserDao {
 
         try {
             // DB접속 (ex mysql workbench 실행)
-            connection = connectionMaker.makeConnection();
+            connection = dataSource.getConnection();
 
             // Query 문 작성
             pstmt = connection.prepareStatement("INSERT INTO `likelion-db`.users(id, name, password) VALUES (?, ?, ?)");
@@ -93,7 +94,7 @@ public class UserDao {
         ResultSet rs = null;
         User user = null;
         try {
-            connection = connectionMaker.makeConnection();
+            connection = dataSource.getConnection();
 
             // Query문 작성
             pstmt = connection.prepareStatement("SELECT * FROM `likelion-db`.users WHERE id = ?");
@@ -147,7 +148,7 @@ public class UserDao {
         Connection connection = null;
         PreparedStatement pstmt = null;
         try {
-            connection = connectionMaker.makeConnection();
+            connection = dataSource.getConnection();
             pstmt = new DeleteAllStrategy().makePreparedStatement(connection);
             pstmt.executeUpdate();
         } catch (SQLException e) {
@@ -175,7 +176,7 @@ public class UserDao {
         PreparedStatement pstmt = null;
         ResultSet rs = null;
         try {
-            connection = connectionMaker.makeConnection();
+            connection = dataSource.getConnection();
             pstmt = connection.prepareStatement("SELECT  COUNT(*) from `likelion-db`.users");
             rs = pstmt.executeQuery();
             rs.next();
@@ -208,14 +209,15 @@ public class UserDao {
     }
 
     public static void main(String[] args) throws SQLException {
+//        AWSConnectionMaker awsConnectionMaker = new AWSConnectionMaker();
+//        UserDao userDao = new UserDao(awsConnectionMaker);
+//
+//        String id = "12";
+//        userDao.add(new User(id, "geun", "asdf1234"));
+//
+//        User user = userDao.findById(id);
+//        System.out.println(user.getName());
 
-        AWSConnectionMaker awsConnectionMaker = new AWSConnectionMaker();
-        UserDao userDao = new UserDao(awsConnectionMaker);
-
-        String id = "12";
-        userDao.add(new User(id, "geun", "asdf1234"));
-
-        User user = userDao.findById(id);
-        System.out.println(user.getName());
+        // test Ccode로 실행
     }
 }
