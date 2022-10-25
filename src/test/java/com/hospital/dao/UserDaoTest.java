@@ -38,7 +38,7 @@ class UserDaoTest {
 
     @Test
     @DisplayName("DAO가 잘 되는지 테스트")
-    void addAndGet() throws SQLException, ClassNotFoundException {
+    void addAndGet() throws SQLException {
         userDao.deleteAll();
         assertEquals(0, userDao.getCount());
 
@@ -53,7 +53,7 @@ class UserDaoTest {
     }
 
     @Test
-    void count() throws SQLException, ClassNotFoundException {
+    void count() throws SQLException {
 
         userDao.deleteAll();
         assertEquals(0, userDao.getCount());
@@ -67,7 +67,7 @@ class UserDaoTest {
     }
 
     @Test
-    void findById() throws SQLException, ClassNotFoundException {
+    void findById() throws SQLException {
         assertThrows(EmptyResultDataAccessException.class, () -> {
             userDao.findById("30");
         });
