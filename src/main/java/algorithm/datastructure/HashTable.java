@@ -28,7 +28,11 @@ public class HashTable {
     public void insert(String key, Integer value) {
         int hashCode = hash(key);
         this.table[hashCode] = value;
-        System.out.println(hashCode + "방에 저장이 완료 되었습니다.");
+        System.out.println(key + " " + hashCode + "방에 저장이 완료 되었습니다.");
+    }
+
+    public int search(String key) {
+        return this.table[hash(key)];
     }
 
     public static void main(String[] args) {
@@ -43,5 +47,7 @@ public class HashTable {
         for (int i = 0; i < names.length; i++) {
             ht.insert(names[i], ht.hash(names[i]));
         }
+
+        System.out.println(ht.search("JaegeunKim"));
     }
 }
