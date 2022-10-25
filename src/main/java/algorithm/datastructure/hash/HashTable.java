@@ -1,7 +1,4 @@
-package algorithm.datastructure;
-
-import java.util.HashSet;
-import java.util.Set;
+package algorithm.datastructure.hash;
 
 public class HashTable {
 

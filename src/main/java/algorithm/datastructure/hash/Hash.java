@@ -1,4 +1,4 @@
-package algorithm.datastructure;
+package algorithm.datastructure.hash;
 
 public class Hash {
 
