@@ -1,50 +1,75 @@
 package algorithm.datastructure.hash;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class HashTable {
+    class Node{
+        private String key;
+        private Integer value;
 
-    private int size = 10000;
-    private int[] table = new int[size];
-
-    public HashTable() {
-
-    }
-
-    public HashTable(int size) {
-        this.size = size;
-        this.table = new int[size];
-    }
-
-    public int hash(String key) {
-        int asciiSum = 0;
-        for (int i = 0; i < key.length(); i++) {
-            asciiSum += key.charAt(i);
+        public Node(String key, Integer value) {
+            this.key = key;
+            this.value = value;
         }
-        return asciiSum % size;
+
+        public String getKey() {
+            return key;
+        }
+
+        public Integer getValue() {
+            return value;
+        }
     }
 
-    public void insert(String key, Integer value) {
-        int hashCode = hash(key);
-        this.table[hashCode] = value;
-        System.out.println(key + " " + hashCode + "방에 저장이 완료 되었습니다.");
+    List<Node>[] table = new ArrayList[1000];
+    public int hash(String str) {
+        int ascii = 0;
+        for (int i = 0; i < str.length(); i++) {
+            ascii += str.charAt(i);
+        }
+        return ascii % 1000;
     }
 
-    public int search(String key) {
-        return this.table[hash(key)];
+    public void insert(String key, int value) {
+        //List --> []
+        int hashIdx = hash(key);
+        if (this.table[hashIdx] == null) {
+            this.table[hashIdx] = new ArrayList<>();
+        }
+        // Map, Object --> [{}]
+        this.table[hashIdx].add(new Node(key, value));
+    }
+
+    public Integer get (String key) {
+        List<Node> nodes = this.table[hash(key)];
+        for (Node node : nodes) {
+            if (key.equals(node.getKey())) {
+                return node.value;
+            }
+        }
+        return null;
     }
 
     public static void main(String[] args) {
+        HashTable hashTable = new HashTable();
 
-        String[] names = new String[]{"DongyeonKang",
-                "SubinKang", "KwanwunKo", "HyunseokKo", "KyoungdukKoo", "YeonjiGu", "SoyeonKown", "OhsukKwon", "GunwooKim", "KiheonKim", "NayeongKim", "DohyeonKim", "MinkyoungKim", "MinjiKim", "SanghoKim", "SolbaeKim", "YejinKim", "EungjunKim", "JaegeunKim", "JeonghyeonKim", "JunhoKim", "JisuKim", "kimjinah", "HaneulKim", "HeejungKim", "KimoonPark", "EunbinPark", "JeongHoonPark", "JeminPark", "TaegeunPark", "JiwonBae", "SeunggeunBaek", "JihwanByeon", "HeungseopByeon", "JeongHeeSeo", "TaegeonSeo", "SeeYunSeok", "SuyeonSeong", "SeyoelSon", "MinjiSong", "JinwooSong", "hyunboSim", "SominAhn", "JiyoungAhn", "ChangbumAn", "SoonminEom",
+        hashTable.insert("Yoonseo", 1);
+        hashTable.insert("Seoyoon", 2);
 
-                "HyeongsangOh", "SuinWoo", "JuwanWoo", "InkyuYoon", "GahyunLee", "DaonLee", "DohyunLee", "SanghunLee", "SujinLee", "AjinLee", "YeonJae", "HyeonjuLee", "HakjunYim", "SeoyunJang", "SeohyeonJang", "JinseonJang", "SujinJeon", "SeunghwanJeon", "DaehwanJung", "JaeHyunJeung", "HeejunJeong", "GukhyeonCho", "MunjuJo", "YejiJo", "ChanminJu", "MinjunChoi", "SujeongChoi", "SeunghoChoi", "AyeongChoi", "GeonjooHan", "JinhyuckHeo", "MinwooHwang", "SieunHwang",
-                "JunhaHwang"};
-
-        HashTable ht = new HashTable(200);
-        for (int i = 0; i < names.length; i++) {
-            ht.insert(names[i], ht.hash(names[i]));
+        int result = hashTable.get("Yoonseo");
+        if (result == 1) {
+            System.out.println("테스트 성공");
+        } else {
+            System.out.printf("테스트 실패 value:%d", result);
         }
 
-        System.out.println(ht.search("JaegeunKim"));
+        result = hashTable.get("Seoyoon");
+        if (result == 2) {
+            System.out.println("테스트 성공");
+        } else {
+            System.out.printf("테스트 실패 value:%d", result);
+        }
+
     }
 }
