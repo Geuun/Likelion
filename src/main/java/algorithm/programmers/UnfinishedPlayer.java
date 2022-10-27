@@ -1,8 +1,16 @@
 package algorithm.programmers;
 
-import algorithm.datastructure.hash.Hash;
+/**
+ * 문제 단순화
+ * N명의 이름 / N-1 명의 완주자
+ * 두 배열을 비교해서 빠진 한명을 출력
+ *
+ * 1. 반복문
+ * 2. 해쉬사용
+ *
+ * 동명이인 문제는 어떡할껀가...?
+ */
 
-import java.awt.image.BandedSampleModel;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
@@ -60,8 +68,3 @@ public class UnfinishedPlayer {
     }
 }
 
-/**
- * 문제 단순화
- * N명의 이름 / N-1 명의 완주자
- * 두 배열을 비교해서 빠진 한명을 출력
- */
