@@ -2,8 +2,10 @@ package algorithm.programmers;
 
 import algorithm.datastructure.hash.Hash;
 
+import java.awt.image.BandedSampleModel;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.Map;
 
 public class UnfinishedPlayer {
     public String solution(String[] participant, String[] completion) {
@@ -12,14 +14,39 @@ public class UnfinishedPlayer {
         Arrays.sort(participant);
         Arrays.sort(completion);
 
-
         int i;
-        for (i = 0; i < completion.length; i++)
+        for (i = 0; i < completion.length; i++) {
             if (participant[i] != completion[i])
                 break;
+            return participant[i];
+        }
+        answer = participant[i];
+        return answer;
+    }
 
+    public String solutionHash(String[] participant, String[] completion) {
+        String answer = "";
 
-        return participant[i];
+        Map<String, Integer> hash = new HashMap<>();
+        for (int i = 0; i < participant.length; i++) {
+            String key = participant[i];
+            // 바로 put을 할 수 없다.
+            if(!hash.containsKey(key)) {
+                hash.put(key, 0);
+            }
+            hash.put(key, hash.get(key) + 1);
+        }
+
+        for (int i = 0; i < completion.length; i++) {
+            String key = completion[i];
+            hash.put(key, hash.get(key) - 1);
+        }
+        for (String key : hash.keySet()) {
+            if (hash.get(key) == 1) {
+                return answer = key;
+            }
+        }
+        return answer;
     }
 
     public static void main(String[] args) {
@@ -28,7 +55,9 @@ public class UnfinishedPlayer {
         String[] partici = {"marina", "josipa", "nikola", "vinko", "filipa"};
         String[] comp = {"josipa", "filipa", "marina", "nikola"};
 
-        System.out.println(unfinishedPlayer.solution(partici, comp));
+
+        System.out.println("반복문 " + unfinishedPlayer.solution(partici, comp));
+        System.out.println("해쉬 " + unfinishedPlayer.solutionHash(partici, comp));
     }
 }
 
