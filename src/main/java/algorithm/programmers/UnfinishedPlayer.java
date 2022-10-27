@@ -16,9 +16,8 @@ public class UnfinishedPlayer {
 
         int i;
         for (i = 0; i < completion.length; i++) {
-            if (participant[i] != completion[i])
+            if (!participant[i].equals(completion[i]))
                 break;
-            return participant[i];
         }
         answer = participant[i];
         return answer;
